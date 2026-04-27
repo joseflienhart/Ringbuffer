@@ -87,6 +87,8 @@ int main() {
 
     //other values, loop-function
     while (true) {
+
+        //calculate average for every new value
         double value = dist(gen);//random value
         read = (read + 1) % 1000;//increase read position
         write = (write + 1) % 1000;//increase write position
@@ -94,6 +96,7 @@ int main() {
         average = average + buffer_array[write]/1000 - buffer_array[read]/1000;
 
 
+        //following block gives the bytes to give the output via LED
         if(average <=2){printSpecialOutput(0b000000001);}
         else if (average > 2 && average <=4){printSpecialOutput(0b000000011);}
         else if (average > 4 && average <=6){printSpecialOutput(0b000000111);}
