@@ -1,15 +1,11 @@
 #include <iostream>
 #include <random>
-#include <ratio>
 #include <cstdint>
 
-////////////////////////////
+//////////////////////////////////////////
 ///just a test function to test the LED output
-// Platzhalter-Definitionen für die Simulation in CLion
 void printSpecialOutput(uint16_t input) {
-    // Maskiere die Eingabe auf 9 Bit, um Fehler zu vermeiden
     input &= 0x1FF;
-
     switch (input) {
         case 0b000000001: // Dezimal 1
             std::cout << "-" << std::endl;
@@ -36,7 +32,6 @@ void printSpecialOutput(uint16_t input) {
             break;
     }
 }
-
 //////////////////////////////////////////
 
 int main() {
@@ -56,9 +51,9 @@ int main() {
     //////////////////////////////////////////////////////////////////////
 
 
-    //////////////////////////////////////
-    //eigentlicher Code://////////////////
-    //////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    //eigentlicher Code:///////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
     double buffer_array[1000];
     int write = 0; //head of ringbuffer
@@ -74,7 +69,7 @@ int main() {
     }
 
     //calculate the first average of the first 1000 numbers
-    float sum = 0.0;
+    double sum = 0.0;
     for (int i = 0; i < 1000; ++i ) {//
         sum = sum + buffer_array[i];
     }
@@ -89,11 +84,11 @@ int main() {
     while (true) {
 
         //calculate average for every new value
-        double value = dist(gen);//random value
-        read = (read + 1) % 1000;//increase read position
-        write = (write + 1) % 1000;//increase write position
-        buffer_array[write] = value * value;//writes the actual value in the buffer
-        average = average + buffer_array[write]/1000 - buffer_array[read]/1000;
+        double value = dist(gen);  //random value
+        read = (read + 1) % 1000;  //increase read position
+        write = (write + 1) % 1000;  //increase write position
+        buffer_array[write] = value * value;  //writes the actual value in the buffer
+        average = average + buffer_array[write]/1000 - buffer_array[read]/1000;//calculates the average
 
 
         //following block gives the bytes to give the output via LED
